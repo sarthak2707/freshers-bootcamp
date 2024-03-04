@@ -5,7 +5,8 @@ import "freshers-bootcamp/day1Exercises"
 func main() {
 
 	//day1Exercises.MatrixExec()
-	day1Exercises.ExpressionTree()
+	//day1Exercises.ExpressionTree()
+	day1Exercises.SalaryCalculator()
 
 	// var declaration
 
