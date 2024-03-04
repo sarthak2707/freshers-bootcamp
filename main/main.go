@@ -1,5 +1,7 @@
 package main
 
+import "github.com/self/freshers-bootcamp/day1"
+
 const ()
 
 var myInt = 10
@@ -15,7 +17,7 @@ func main() {
 	//myVariable = 10
 	//fmt.Print(myVariable)
 
-	//day1.TryFor()
+	day1.TryFor()
 	//day1.TryWhile()
 
 	//day1.TryIfElse()
