@@ -1,6 +1,6 @@
 package main
 
-import "github.com/self/freshers-bootcamp/day2"
+import "github.com/razorpay/freshers-bootcamp/day2"
 
 const ()
 
@@ -86,7 +86,7 @@ func main() {
 	//day2.ChannelWithDeadlock()
 
 	// TODO
-	//day2.ChannelWithDeadlockExample2()
+	day2.ChannelWithDeadlockExample2()
 
 	//day2.RangeOverChannels()
 
@@ -100,5 +100,5 @@ func main() {
 
 	//day2.Signals()
 
-	day2.WorkerPoolExample()
+	//day2.WorkerPoolExample()
 }

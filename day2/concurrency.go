@@ -124,21 +124,19 @@ func ChannelWithDeadlockExample2() {
 			fmt.Println("Sending", i)
 			ch <- i // Send value into the channel
 		}
+		close(ch) // Close the channel when all values are sent
 	}()
 
 	// Goroutine 2: Receiving values from the channel
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		for {
-			val := <-ch // Receive value from the channel
+		for val := range ch { // Use range to iterate over channel values until it's closed
 			fmt.Println("Received", val)
 		}
 	}()
 
 	wg.Wait()
-
-	// TODO Resolve Deadlock
 }
 
 func ChannelsWithSelectStatement() {
