@@ -69,4 +69,38 @@ func main() {
 	//day1.ErrorExample()
 
 	//day1.CustomErrorExample()
+
+	//day2.GoRoutinesExample()
+
+	// unbuffered
+	//day2.ChannelWithSenderAndReceiver()
+
+	//day2.BufferedChannelExample()
+
+	//day2.ChannelSynchronization()
+
+	//day2.ChannelsWithSelectStatement()
+
+	//day2.NonBlockingChannels()
+
+	//day2.CloseChannels()
+
+	//day2.ChannelWithDeadlock()
+
+	// TODO
+	//day2.ChannelWithDeadlockExample2()
+
+	//day2.RangeOverChannels()
+
+	//day2.WaitGroup()
+
+	//day2.AtomicInt()
+
+	//day2.MutexWithRoutines()
+
+	//day2.StatefulGoRoutine()
+
+	//day2.Signals()
+
+	day2.WorkerPoolExample()
 }
