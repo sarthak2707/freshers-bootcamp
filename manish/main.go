@@ -1,8 +1,6 @@
 package main
 
-import (
-	"manish/day2"
-)
+import "manish/day2"
 
 func main() {
 	//question 1
@@ -17,9 +15,13 @@ func main() {
 	// day2 Ques1
 	//day2.Question1()
 
+	//day2.Question1_2()
+
 	// day2 Ques2
 	//day2.Question2()
 
 	//day2 Ques3
-	day2.Question3()
+	//day2.Question3()
+
+	day2.ChannelWithDeadlockExample2()
 }
