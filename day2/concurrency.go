@@ -70,10 +70,13 @@ func ChannelWithDeadlock() {
 	ch := make(chan int)
 
 	// Blocked because there's no receiver
-	ch <- 42
+	go func() {
+		ch <- 42
+	}()
 
 	// Blocked because there's no sender
-	<-ch
+	num := <-ch
+	fmt.Println("received: ", num)
 
 	//TODO Resolve deadlock
 }
@@ -119,6 +122,7 @@ func ChannelWithDeadlockExample2() {
 	// Goroutine 1: Sending values into the channel
 	wg.Add(1)
 	go func() {
+		defer close(ch)
 		defer wg.Done()
 		for i := 1; i <= 5; i++ {
 			fmt.Println("Sending", i)
@@ -130,15 +134,12 @@ func ChannelWithDeadlockExample2() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		for {
-			val := <-ch // Receive value from the channel
+		for val := range ch {
 			fmt.Println("Received", val)
 		}
 	}()
 
 	wg.Wait()
-
-	// TODO Resolve Deadlock
 }
 
 func ChannelsWithSelectStatement() {
