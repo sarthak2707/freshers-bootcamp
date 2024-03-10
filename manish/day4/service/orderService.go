@@ -66,3 +66,13 @@ func GetOrder(id string) (*models.Order, error) {
 
 	return order, nil
 }
+
+func FetchLatestOrderForCustomer(customerID int) (*models.Order, error) {
+	order, err := repo.FindLatestOrderByCustomerId(customerID)
+	if err != nil {
+		fmt.Println("Error while fetching latest order for customer: ", err)
+		return nil, err
+	}
+
+	return order, nil
+}

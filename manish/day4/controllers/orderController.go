@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"manish/day4/models"
 	"manish/day4/service"
+	"time"
 )
 
 func CreateOrder(c *gin.Context) {
@@ -21,6 +22,20 @@ func CreateOrder(c *gin.Context) {
 		return
 	}
 
+	if order, err = service.FetchLatestOrderForCustomer(orderRequest.CustomerID); err != nil {
+		c.JSON(400, gin.H{
+			"error": "Error while fetching latest order for customer",
+		})
+	}
+
+	if time.Now().Unix()-order.CreatedAt.Unix() < int64(time.Minute.Minutes()*5) {
+		c.JSON(400, gin.H{
+			"error":   "Order already placed in last minute",
+			"message": "Please try again after a minute",
+		})
+		return
+	}
+
 	if order, err = service.CreateOrder(&orderRequest); err != nil {
 		c.JSON(400, gin.H{
 			"error":   "Error while creating order",
@@ -33,6 +48,7 @@ func CreateOrder(c *gin.Context) {
 		"message": "Order created successfully",
 		"order":   *order,
 	})
+
 }
 
 func GetOrder(c *gin.Context) {

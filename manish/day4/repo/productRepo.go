@@ -156,3 +156,18 @@ func CreateAdmin(admin *models.Admin) error {
 
 	return nil
 }
+
+func FindLatestOrderByCustomerId(customerID int) (*models.Order, error) {
+	var order models.Order
+
+	if err := config.DB.
+		Table("orders").
+		Where("customer_id = ?", customerID).
+		Where("status = ?", "order_placed").
+		Order("created_at desc").
+		First(&order).Error; err != nil {
+		return nil, err
+	}
+
+	return &order, nil
+}
