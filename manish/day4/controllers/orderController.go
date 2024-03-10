@@ -12,7 +12,8 @@ func CreateOrder(c *gin.Context) {
 		order        *models.Order
 		err          error
 	)
-	if err := c.BindJSON(&orderRequest); err != nil {
+
+	if err = c.BindJSON(&orderRequest); err != nil {
 		c.JSON(400, gin.H{
 			"error":   "Error while unmarshalling order data",
 			"message": err.Error(),

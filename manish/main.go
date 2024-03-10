@@ -36,6 +36,7 @@ func day4App() {
 	config.DB.AutoMigrate(&models.Product{})
 	config.DB.AutoMigrate(&models.Customer{})
 	config.DB.AutoMigrate(&models.Order{})
+	config.DB.AutoMigrate(&models.Admin{})
 
 	r := routes.SetupRouter()
 	r.Run()

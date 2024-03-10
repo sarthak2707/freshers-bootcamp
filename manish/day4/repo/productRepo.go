@@ -87,6 +87,19 @@ func FindCustomerByUsername(username string) (*models.Customer, error) {
 	return &customer, nil
 }
 
+func FindAdminByUsername(username string) (*models.Customer, error) {
+	var customer models.Customer
+
+	if err := config.DB.
+		Table("admins").
+		Where("username = ?", username).
+		First(&customer).Error; err != nil {
+		return nil, err
+	}
+
+	return &customer, nil
+}
+
 func FindCustomerById(id int) (*models.Customer, error) {
 	var customer models.Customer
 
@@ -128,6 +141,16 @@ func UpdateProductQuantity(id uint, quantity int) error {
 		Table("products").
 		Where("id = ?", id).
 		Update("quantity", quantity).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func CreateAdmin(admin *models.Admin) error {
+	if err := config.DB.
+		Table("admins").
+		Create(admin).Error; err != nil {
 		return err
 	}
 

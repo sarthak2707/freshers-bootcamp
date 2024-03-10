@@ -6,8 +6,8 @@ import (
 	"manish/day4/service"
 )
 
-func SignUp(c *gin.Context) {
-	var user models.Customer
+func AdminSignUp(c *gin.Context) {
+	var user models.Admin
 	if err := c.BindJSON(&user); err != nil {
 		c.JSON(400, gin.H{
 			"error":   "Error while unmarshalling user data",
@@ -16,7 +16,7 @@ func SignUp(c *gin.Context) {
 		return
 	}
 
-	if err := service.SignUp(&user); err != nil {
+	if err := service.AdminSignUp(&user); err != nil {
 		c.JSON(400, gin.H{
 			"error":   "Error while creating user",
 			"message": err.Error(),
@@ -25,12 +25,12 @@ func SignUp(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{
-		"message": "User created successfully",
+		"message": "Admin created successfully",
 		"user":    user,
 	})
 }
 
-func Login(c *gin.Context) {
+func AdminLogin(c *gin.Context) {
 	var loginRequest models.LoginRequest
 	if err := c.BindJSON(&loginRequest); err != nil {
 		c.JSON(400, gin.H{
@@ -40,7 +40,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	if err := service.Login(c, &loginRequest); err != nil {
+	if err := service.AdminLogin(c, &loginRequest); err != nil {
 		c.JSON(400, gin.H{
 			"error":   "Error while login",
 			"message": "Please check username/password and try again.",
@@ -49,10 +49,6 @@ func Login(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{
-		"message": "User login successfully",
+		"message": "Admin login successfully",
 	})
-}
-
-func Logout(c *gin.Context) {
-	c.SetCookie("token", "", -1, "/", "", false, true)
 }
