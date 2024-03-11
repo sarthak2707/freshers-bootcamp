@@ -1,13 +1,13 @@
 package main
 
-import "freshers-bootcamp/day2"
+import "freshers-bootcamp/day2Exercises"
 
 func main() {
 
 	//day1Exercises.MatrixExec()
 	//day1Exercises.ExpressionTree()
 	//day1Exercises.SalaryCalculator()
-	//day2Exercises.LetterCounter()
+	day2Exercises.LetterCounter()
 	//day2Exercises.TeacherRating()
 	//day2Exercises.BankBalanceUpdate()
 
@@ -100,7 +100,7 @@ func main() {
 
 	//day2.MutexWithRoutines()
 
-	day2.StatefulGoRoutine()
+	//day2.StatefulGoRoutine()
 
 	//day2.Signals()
 
