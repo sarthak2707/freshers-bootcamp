@@ -105,4 +105,8 @@ func main() {
 	//day2.Signals()
 
 	//day2.WorkerPoolExample()
+
+	//day3.ContextExample()
+
+	//day3.InitialiseRoute()
 }
