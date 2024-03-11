@@ -1,12 +1,15 @@
 package main
 
-import "freshers-bootcamp/day1Exercises"
+import "freshers-bootcamp/day2"
 
 func main() {
 
 	//day1Exercises.MatrixExec()
 	//day1Exercises.ExpressionTree()
-	day1Exercises.SalaryCalculator()
+	//day1Exercises.SalaryCalculator()
+	//day2Exercises.LetterCounter()
+	//day2Exercises.TeacherRating()
+	//day2Exercises.BankBalanceUpdate()
 
 	// var declaration
 
@@ -87,7 +90,6 @@ func main() {
 
 	//day2.ChannelWithDeadlock()
 
-	// TODO
 	//day2.ChannelWithDeadlockExample2()
 
 	//day2.RangeOverChannels()
@@ -98,9 +100,9 @@ func main() {
 
 	//day2.MutexWithRoutines()
 
-	//day2.StatefulGoRoutine()
+	day2.StatefulGoRoutine()
 
 	//day2.Signals()
 
-	day2.WorkerPoolExample()
+	//day2.WorkerPoolExample()
 }
