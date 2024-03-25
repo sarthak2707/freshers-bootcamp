@@ -25,6 +25,8 @@ func main() {
 	}
 	defer Config.DB.Close()
 	Config.DB.AutoMigrate(&Models.UserEx1{})
+	Config.DB.AutoMigrate(&Models.Student{})
+	Config.DB.AutoMigrate(&Models.TestScore{})
 	r := Routes.SetupRouter()
 	//running
 	r.Run()
