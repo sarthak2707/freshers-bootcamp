@@ -1,15 +1,33 @@
 package main
 
-import "freshers-bootcamp/day2Exercises"
+import (
+	"fmt"
+	"freshers-bootcamp/Config"
+	"freshers-bootcamp/Models"
+	"freshers-bootcamp/Routes"
+	"github.com/jinzhu/gorm"
+)
+
+var err error
 
 func main() {
 
 	//day1Exercises.MatrixExec()
 	//day1Exercises.ExpressionTree()
 	//day1Exercises.SalaryCalculator()
-	day2Exercises.LetterCounter()
+	//day2Exercises.LetterCounter()
 	//day2Exercises.TeacherRating()
 	//day2Exercises.BankBalanceUpdate()
+
+	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
+	if err != nil {
+		fmt.Println("Status:", err)
+	}
+	defer Config.DB.Close()
+	Config.DB.AutoMigrate(&Models.UserEx1{})
+	r := Routes.SetupRouter()
+	//running
+	r.Run()
 
 	// var declaration
 

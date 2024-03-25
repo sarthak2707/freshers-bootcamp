@@ -1,9 +1,9 @@
 package day3
 
 import (
+	"freshers-bootcamp/database"
+	mock_database "freshers-bootcamp/mocks"
 	"github.com/golang/mock/gomock"
-	"github.com/self/freshers-bootcamp/database"
-	mock_database "github.com/self/freshers-bootcamp/mocks"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
