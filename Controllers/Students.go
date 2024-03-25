@@ -55,7 +55,7 @@ func UpdateStudent(c *gin.Context) {
 		c.JSON(http.StatusNotFound, student)
 	}
 	c.BindJSON(&student)
-	err = Models.UpdateStudent(&student, uint(id))
+	err = Models.UpdateStudent(&student)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {

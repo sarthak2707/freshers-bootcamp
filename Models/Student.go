@@ -30,7 +30,7 @@ func GetStudentById(student *Student, id uint) (err error) {
 }
 
 // UpdateStudent ... Update student
-func UpdateStudent(student *Student, id uint) (err error) {
+func UpdateStudent(student *Student) (err error) {
 	fmt.Println(student)
 	Config.DB.Save(student)
 	return nil
