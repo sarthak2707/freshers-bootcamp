@@ -46,15 +46,19 @@ func GetStudentById(c *gin.Context) {
 
 func UpdateStudent(c *gin.Context) {
 	var student Models.Student
+	fmt.Println(student)
 	id, err := strconv.ParseUint(c.Params.ByName("id"), 10, 32)
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnprocessableEntity)
 	}
 	err = Models.GetStudentById(&student, uint(id))
+	fmt.Println(student)
 	if err != nil {
 		c.JSON(http.StatusNotFound, student)
 	}
+	fmt.Println(student)
 	c.BindJSON(&student)
+	fmt.Println(student)
 	err = Models.UpdateStudent(&student)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)

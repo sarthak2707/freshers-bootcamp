@@ -16,5 +16,12 @@ func SetupRouter() *gin.Engine {
 		grp1.PUT("user/:id", Controllers.UpdateUserEx1)
 		grp1.DELETE("user/:id", Controllers.DeleteUserEx1)
 	}
+	grp2 := r.Group("/student-api")
+	{
+		grp2.GET("student", Controllers.GetAllStudents)
+		grp2.POST("student", Controllers.CreateStudent)
+		grp2.GET("student/:id", Controllers.GetStudentById)
+		grp2.PUT("student/:id", Controllers.UpdateStudent)
+	}
 	return r
 }
