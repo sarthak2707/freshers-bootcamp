@@ -46,23 +46,77 @@ func GetStudentById(c *gin.Context) {
 
 func UpdateStudent(c *gin.Context) {
 	var student Models.Student
-	fmt.Println(student)
 	id, err := strconv.ParseUint(c.Params.ByName("id"), 10, 32)
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnprocessableEntity)
 	}
 	err = Models.GetStudentById(&student, uint(id))
-	fmt.Println(student)
 	if err != nil {
 		c.JSON(http.StatusNotFound, student)
 	}
-	fmt.Println(student)
 	c.BindJSON(&student)
-	fmt.Println(student)
 	err = Models.UpdateStudent(&student)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusOK, student)
+	}
+}
+
+func GetAllScoresForStudent(c *gin.Context) {
+	var scores []Models.TestScore
+
+	id, err := strconv.ParseUint(c.Params.ByName("id"), 10, 32)
+	if err != nil {
+		c.AbortWithStatus(http.StatusUnprocessableEntity)
+	}
+
+	err = Models.GetScoresByStudentId(&scores, uint(id))
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, scores)
+	}
+}
+
+func CreateTestScore(c *gin.Context) {
+	var score Models.TestScore
+	c.BindJSON(&score)
+	err := Models.CreateTestScore(&score)
+	if err != nil {
+		fmt.Println(err.Error())
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, score)
+	}
+}
+
+func UpdateTestScore(c *gin.Context) {
+	var score Models.TestScore
+
+	id, err := strconv.ParseUint(c.Params.ByName("id"), 10, 32)
+	if err != nil {
+		c.AbortWithStatus(http.StatusUnprocessableEntity)
+	}
+	subject := c.Params.ByName("subject")
+
+	err = Models.GetScoreForStudentBySubject(&score, uint(id), subject)
+	if err != nil {
+		fmt.Println(err.Error())
+		c.AbortWithStatus(http.StatusNotFound)
+	}
+	fmt.Println(score)
+	c.BindJSON(&score)
+	fmt.Println(score)
+	fmt.Println(subject)
+	if score.Subject != subject {
+		c.AbortWithStatus(http.StatusUnprocessableEntity)
+		return
+	}
+	err = Models.UpdateTestScore(&score)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, score)
 	}
 }

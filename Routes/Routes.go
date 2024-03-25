@@ -22,6 +22,9 @@ func SetupRouter() *gin.Engine {
 		grp2.POST("student", Controllers.CreateStudent)
 		grp2.GET("student/:id", Controllers.GetStudentById)
 		grp2.PUT("student/:id", Controllers.UpdateStudent)
+		grp2.GET("score/:id", Controllers.GetAllScoresForStudent)
+		grp2.POST("score", Controllers.CreateTestScore)
+		grp2.PUT("score/:id/:subject", Controllers.UpdateTestScore)
 	}
 	return r
 }

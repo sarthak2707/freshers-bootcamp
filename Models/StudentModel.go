@@ -1,7 +1,7 @@
 package Models
 
 type Student struct {
-	Id          uint   `json:"id"`
+	ID          uint   `json:"id"`
 	Name        string `json:"name"`
 	LastName    string `json:"last_name"`
 	DateOfBirth int64  `json:"date_of_birth" gorm:"type:bigint"`
