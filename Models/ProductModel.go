@@ -10,7 +10,7 @@ type Product struct {
 	Name     string `json:"product_name"`
 	Quantity uint   `json:"quantity"`
 	Price    uint   `json:"price"`
-	Message  string `json:"message"`
+	Message  string `json:"message" gorm:"-"`
 	mu       sync.Mutex
 }
 

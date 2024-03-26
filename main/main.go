@@ -27,6 +27,8 @@ func main() {
 	Config.DB.AutoMigrate(&Models.UserEx1{})
 	Config.DB.AutoMigrate(&Models.Student{})
 	Config.DB.AutoMigrate(&Models.TestScore{})
+	Config.DB.AutoMigrate(&Models.Product{})
+	Config.DB.AutoMigrate(&Models.Order{})
 	r := Routes.SetupRouter()
 	//running
 	r.Run()
