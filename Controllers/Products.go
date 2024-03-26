@@ -7,14 +7,6 @@ import (
 	"net/http"
 )
 
-type displayableProduct struct {
-	Id          uint   `json:"id"`
-	ProductName string `json:"product_name"`
-	Price       uint   `json:"price"`
-	Quantity    uint   `json:"quantity"`
-	Message     string `json:"message"`
-}
-
 func AddProduct(c *gin.Context) {
 	var product Models.Product
 	c.BindJSON(&product)
@@ -23,13 +15,44 @@ func AddProduct(c *gin.Context) {
 		fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		output := displayableProduct{
-			Id:          product.ID,
-			ProductName: product.Name,
-			Price:       product.Price,
-			Quantity:    product.Quantity,
-			Message:     product.Message,
-		}
-		c.JSON(200, output)
+		c.JSON(200, product.GetDisplayableProductWithMessageFromProduct())
+	}
+}
+
+func UpdateProduct(c *gin.Context) {
+	var product Models.Product
+	id := c.Params.ByName("id")
+	err := Models.GetProductById(&product, id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, product.GetDisplayableProductFromProduct())
+	}
+	c.BindJSON(&product)
+	err = Models.UpdateProduct(&product)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, product.GetDisplayableProductFromProduct())
+	}
+}
+
+func GetAllProducts(c *gin.Context) {
+	var products []Models.Product
+	err := Models.GetAllProducts(&products)
+	if err != nil {
+		fmt.Println(err.Error())
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(200, Models.GetDisplayableProductsFromProducts(products))
+	}
+}
+
+func GetProductById(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var product Models.Product
+	err := Models.GetProductById(&product, id)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(200, product.GetDisplayableProductFromProduct())
 	}
 }

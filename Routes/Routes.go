@@ -29,6 +29,9 @@ func SetupRouter() *gin.Engine {
 	grpProduct := r.Group("/product-api")
 	{
 		grpProduct.POST("product", Controllers.AddProduct)
+		grpProduct.PUT("product/:id", Controllers.UpdateProduct)
+		grpProduct.GET("product/:id", Controllers.GetProductById)
+		grpProduct.GET("product", Controllers.GetAllProducts)
 	}
 	return r
 }
